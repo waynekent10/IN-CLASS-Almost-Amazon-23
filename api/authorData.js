@@ -3,40 +3,29 @@ import client from '../utils/client';
 const endpoint = client.databaseURL;
 
 // FIXME:  GET ALL AUTHORS
-const getAuthors = () => new Promise((resolve, reject) => {
-  fetch(`${endpoint}/authors.json`, {
+const getAuthors = (uid) => new Promise((resolve, reject) => {
+  fetch(`${endpoint}/authors.json?orderBy"uid"andequalTo="${uid}"`, {
     method: 'GET',
     headers: {
       'Content-Type': 'application/json',
     },
   })
     .then((response) => response.json())
-    .then((data) => {
-      if (data) {
-        resolve(Object.values(data));
-      } else {
-        resolve([]);
-      }
-    })
+    .then((data) => resolve(Object.values(data)))
     .catch(reject);
 });
 
 // FIXME: CREATE AUTHOR
-const createAuthor = (firebaseKey) => new Promise((resolve, reject) => {
-  fetch(`${endpoint}/${firebaseKey}.json`, {
-    method: 'GET',
+const createAuthor = (payload) => new Promise((resolve, reject) => {
+  fetch(`${endpoint}/authors.json`, {
+    method: 'POST',
     headers: {
       'Content-Type': 'application/json',
     },
+    body: JSON.stringify(payload),
   })
     .then((response) => response.json())
-    .then((data) => {
-      if (data) {
-        resolve(Object.values(data));
-      } else {
-        resolve([]);
-      }
-    })
+    .then((data) => resolve(data))
     .catch(reject);
 });
 
@@ -49,13 +38,7 @@ const getSingleAuthor = (firebaseKey) => new Promise((resolve, reject) => {
     },
   })
     .then((response) => response.json())
-    .then((data) => {
-      if (data) {
-        resolve(Object.values(data));
-      } else {
-        resolve([]);
-      }
-    })
+    .then((data) => resolve(data))
     .catch(reject);
 });
 
@@ -68,13 +51,7 @@ const deleteSingleAuthor = (firebaseKey) => new Promise((resolve, reject) => {
     },
   })
     .then((response) => response.json())
-    .then((data) => {
-      if (data) {
-        resolve(Object.values(data));
-      } else {
-        resolve([]);
-      }
-    })
+    .then((data) => resolve(data))
     .catch(reject);
 });
 
@@ -85,15 +62,10 @@ const updateAuthor = (firebaseKey) => new Promise((resolve, reject) => {
     headers: {
       'Content-Type': 'application/json',
     },
+    body: JSON.stringify(),
   })
     .then((response) => response.json())
-    .then((data) => {
-      if (data) {
-        resolve(Object.values(data));
-      } else {
-        resolve([]);
-      }
-    })
+    .then(resolve)
     .catch(reject);
 });
 
