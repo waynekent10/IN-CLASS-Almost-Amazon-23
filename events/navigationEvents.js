@@ -34,6 +34,10 @@ const navigationEvents = () => {
     favoriteAuthors().then(showAuthors);
   });
 
+  document.querySelector('#home').addEventListener('click', () => {
+    getBooks().then(showBooks);
+  });
+
   // STRETCH: SEARCH
   document.querySelector('#search').addEventListener('keyup', (e) => {
     const searchValue = document.querySelector('#search').value.toLowerCase();
