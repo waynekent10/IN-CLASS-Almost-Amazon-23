@@ -14,7 +14,7 @@ const startApp = (user) => {
   navBar(); // DYNAMICALLY ADD THE NAV
   logoutButton(); // ADD THE LOGOUT BUTTON COMPONENT
   navigationEvents(user); // ATTACH THE EVENT LISTENERS TO THE NAVBAR
-  getBooks().then(showBooks);
+  getBooks(user.uid).then(showBooks);
 
   // TODO: Put all books on the DOM on App load
 };
