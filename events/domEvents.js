@@ -10,7 +10,7 @@ import viewBook from '../pages/viewBook';
 import { getBookDetails, getAuthorDetails } from '../api/mergedData';
 import viewAuthor from '../pages/viewAuthor';
 
-const domEvents = () => {
+const domEvents = (user) => {
   document.querySelector('#main-container').addEventListener('click', (e) => {
     // TODO: CLICK EVENT FOR DELETING A BOOK
     if (e.target.id.includes('delete-book')) {
@@ -59,6 +59,11 @@ const domEvents = () => {
       }
     }
 
+    // Done: ADD CLICK EVENT FOR SHOWING FORM FOR ADDING AN AUTHOR
+    if (e.target.id.includes('add-author-btn')) {
+      console.warn('ADD AUTHOR');
+      addAuthorForm({}, user);
+    }
     // FIXME: ADD CLICK EVENT FOR SHOWING FORM FOR ADDING AN AUTHOR
     if (e.target.id.includes('update-author')) {
       console.warn('UPDATE AUTHOR', e.target.id);
